@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex items-center">
         <Image src="/logo.png" width={40} height={40} alt={"logo"}/>
         <Link href="/" className="text-xl font-semibold text-gray-800 ml-3">
-          Wimbledon Courts Notifier
+          Wimbledon Courts
         </Link>
       </div>
       {/* <div className="flex items-center">

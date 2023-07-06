@@ -4,8 +4,10 @@ import Header from "@/components/Header";
 import { toast } from "react-hot-toast";
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { MegaphoneIcon } from '@heroicons/react/24/outline'
+import { MegaphoneIcon, RectangleStackIcon } from '@heroicons/react/24/outline'
 import DateTimeNice from "@/components/DateTimeNice";
+import Footer from "@/components/Footer";
+import Link from "next/link";
 
 type Indicator = {
   id: string;
@@ -88,25 +90,31 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Wimbledon Courts Notifier</title>
+        <title>Home | Wimbledon Courts</title>
         <meta name="description" content="Notify court attendees of court status" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center pb-24">
+      <main className="flex min-h-screen flex-col items-center">
         <Header />
         <div className="px-6 max-w-2xl w-full">
           <div>
-            <div className="my-6">
+            <div className="my-6 flex flex-col">
               <h1 className="text-4xl font-semibold text-purple-wb">Current Status:
                 {lastest.data && (
                   <span className="text-green-wb font-bold text-4xl"> {lastest.data[0]?.number}</span>
                 )}
               </h1>
               <p className="text-green-wb font-light text-sm">LAST UPDATE:
-              {lastest.data && (
-                <DateTimeNice dateIn={lastest.data[0]?.createdAt} />
-                )}
+                <span className="ml-2">
+                  {lastest.data && (
+                    <DateTimeNice dateIn={lastest.data[0]?.createdAt} />
+                  )}
+                </span>
               </p>
+              <Link href="/history" className="py-2 text-gray-600 font-light flex items-center gap-2">
+                <RectangleStackIcon className="w-4 h-4"/>
+                View history
+              </Link>
             </div>
             <div>
               <p className="mb-2 text-gray-600 font-light">
@@ -125,6 +133,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Footer/>
       </main>
       <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '@/components/Header'
 import { api } from '@/utils/api'
 import DateTimeNice from '@/components/DateTimeNice';
+import Footer from '@/components/Footer';
 
 export default function History() {
   const statuses = api.notify.getAllStatus.useQuery();
@@ -13,7 +14,7 @@ export default function History() {
         <meta name="description" content="History of notification statuses." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center pb-24">
+      <main className="flex min-h-screen flex-col items-center">
         <Header />
         <div className="px-6 max-w-2xl w-full">
           <div>
@@ -41,8 +42,8 @@ export default function History() {
                 </div>
               )}
           </div>
-
         </div>
+        <Footer />
       </main>
     </>
   )
