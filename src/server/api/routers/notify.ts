@@ -38,6 +38,17 @@ export const notifyRouter = createTRPCRouter({
     }),
 
 
+  getAllStatus: publicProcedure
+    .query(({ ctx }) => {
+      return ctx.prisma.courtNotification.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }),
+
+
+
 
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";

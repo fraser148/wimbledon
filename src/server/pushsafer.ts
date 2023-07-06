@@ -27,7 +27,8 @@ class Pushsafer {
       m: message,
       // v: "3",
       pr: "2",
-      d: "gs4273"
+      // d: "gs4273"
+      d: "a"
     };
     const params = urlEncodeParams(data);
     const options = {

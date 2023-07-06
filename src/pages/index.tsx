@@ -1,13 +1,11 @@
-// import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-// import Link from "next/link";
 import { api } from "@/utils/api";
 import Header from "@/components/Header";
 import { toast } from "react-hot-toast";
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { MegaphoneIcon } from '@heroicons/react/24/outline'
-import { getDateTimeReadable } from "@/utils/dateTime";
+import DateTimeNice from "@/components/DateTimeNice";
 
 type Indicator = {
   id: string;
@@ -53,20 +51,12 @@ const coverIndicators : Indicator[] = [
   }
 ]
 
-const DateTimeNice = ({dateIn}: {dateIn: Date | undefined}) => {
-  const { date, time } = getDateTimeReadable(dateIn);
-  return (
-    <>
-      <span className="ml-2 font-medium">{date}</span>
-      <span className="ml-2">{time}</span>
-    </>
-  )
-}
 
 export default function Home() {
   const notify = api.notify.notify.useMutation({
     onSuccess: () => {
       toast.success("Notification sent");
+      void lastest.refetch();
     }
   });
   const lastest = api.notify.getStatus.useQuery();
